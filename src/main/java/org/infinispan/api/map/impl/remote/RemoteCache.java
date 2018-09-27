@@ -1,10 +1,15 @@
-package org.infinispan.api.impl;
+package org.infinispan.api.map.impl.remote;
 
-import org.infinispan.api.Cache;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.infinispan.api.map.InfinispanMap;
 import org.infinispan.configuration.cache.Configuration;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
 
-public class RemoteCache<K, V> implements Cache<K, V> {
+public class RemoteCache<K, V> implements InfinispanMap<K, V> {
+
+   private Map<K, V> map = new HashMap();
 
    private Configuration configuration;
 
@@ -17,12 +22,12 @@ public class RemoteCache<K, V> implements Cache<K, V> {
    }
 
    @Override
-   public V put(K key, V value) {
-      return null;
+   public void put(K key, V value) {
+      map.put(key, value);
    }
 
    @Override
-   public void putAndReturn(K key, V value) {
-
+   public V get(K key) {
+      return map.get(key);
    }
 }
