@@ -2,5 +2,5 @@ package org.infinispan.api.search;
 
 public interface Search {
 
-   <K, V> SearchableCache<K, V> getCache(String name);
+   <K, V> SearchableMap<K, V> getOrCreate(String name);
 }
