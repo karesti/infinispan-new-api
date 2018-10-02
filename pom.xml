@@ -32,7 +32,7 @@
     <modules>
         <module>simple</module>
         <module>modulable</module>
-        <!--<module>reactive</module>-->
+        <module>reactive</module>
     </modules>
 
     <dependencies>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.infinispan.api.search.SearchableMap;
 import org.infinispan.query.dsl.QueryFactory;
+import org.infinispan.query.dsl.embedded.impl.EmbeddedQueryEngine;
 import org.infinispan.query.dsl.embedded.impl.EmbeddedQueryFactory;
 
 public class EmbeddedSearchableMapImpl<K, V> implements SearchableMap<K, V> {
@@ -17,6 +18,6 @@ public class EmbeddedSearchableMapImpl<K, V> implements SearchableMap<K, V> {
 
    @Override
    public QueryFactory getQueryFactory() {
-      return new EmbeddedQueryFactory(null);
+      return new EmbeddedQueryFactory(new EmbeddedQueryEngine(null, false));
    }
 }
