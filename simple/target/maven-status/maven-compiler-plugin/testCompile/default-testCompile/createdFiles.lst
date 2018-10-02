@@ -1,0 +1,4 @@
+org/infinispan/api/data/counter/CounterTest.class
+org/infinispan/api/search/Person.class
+org/infinispan/api/data/map/MapTest.class
+org/infinispan/api/search/QuerySimpleTest.class

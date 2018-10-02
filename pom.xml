@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.infinispan</groupId>
-    <artifactId>api</artifactId>
+    <artifactId>api-parent-pom</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -27,6 +28,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <modules>
+        <module>simple</module>
+        <module>modulable</module>
+        <!--<module>reactive</module>-->
+    </modules>
 
     <dependencies>
         <dependency>
