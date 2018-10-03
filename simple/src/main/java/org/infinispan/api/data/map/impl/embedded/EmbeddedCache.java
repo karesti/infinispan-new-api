@@ -3,6 +3,7 @@ package org.infinispan.api.data.map.impl.embedded;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.infinispan.api.data.map.InfinispanAsyncMap;
 import org.infinispan.api.data.map.InfinispanMap;
 
 public class EmbeddedCache<K, V> implements InfinispanMap<K, V> {

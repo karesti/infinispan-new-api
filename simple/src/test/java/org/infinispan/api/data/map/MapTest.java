@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class MapTest {
 
    @Test
-   public void testRemoteCache(){
+   public void testRemoteMap(){
       InfinispanData infinispan = InfinispanDataAccess.getInfinispanRemote();
 
       MapManager mapManager = infinispan.getMapManager();
@@ -20,7 +20,7 @@ public class MapTest {
    }
 
    @Test
-   public void testEmbeddedCache(){
+   public void testEmbeddedMap(){
       InfinispanData infinispan = InfinispanDataAccess.getInfinispanLocal();
 
       MapManager mapManager = infinispan.getMapManager();
