@@ -9,7 +9,7 @@ public class EmbeddedInfinispanTransactionManager implements InfinispanTransacti
 
    @Override
    public <K, V> TransactionalMap getOrCreate(String name) {
-      return null;
+      return new EmbeddedTransactionalMap();
    }
 
    @Override
