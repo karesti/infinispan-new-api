@@ -30,9 +30,9 @@
     </dependencyManagement>
 
     <modules>
+        <module>simple-api</module>
         <module>simple</module>
         <module>modulable</module>
-        <module>reactive</module>
     </modules>
 
     <dependencies>
