@@ -2,13 +2,10 @@ package org.infinispan.api.concurrent.counter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
-import org.infinispan.api.collection.InfinispanCollectionManagement;
-import org.infinispan.api.collection.InfinispanCollectionsAccess;
-import org.infinispan.api.concurrent.InfinispanConcurrencyManagement;
 import org.infinispan.api.concurrent.InfinispanConcurrencyAccess;
+import org.infinispan.api.concurrent.InfinispanConcurrencyManagement;
 import org.junit.jupiter.api.Test;
 
 public class CounterTest {
@@ -30,7 +27,6 @@ public class CounterTest {
 
       CounterManager counterManager = infinispan.getCounterManager();
       StrongCounterAsync counter1 = counterManager.getStrongCounterAsync("counter1");
-
 
       CompletionStage<Integer> value1 = counter1.addAndGet(3);
 

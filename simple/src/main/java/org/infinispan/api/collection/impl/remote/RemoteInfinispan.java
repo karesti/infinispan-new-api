@@ -1,6 +1,7 @@
 package org.infinispan.api.collection.impl.remote;
 
 import org.infinispan.api.collection.InfinispanCollectionManagement;
+import org.infinispan.api.collection.impl.remote.map.RemoteMapManager;
 import org.infinispan.api.collection.map.MapManager;
 import org.infinispan.api.concurrent.InfinispanConcurrencyManagement;
 import org.infinispan.api.concurrent.counter.CounterManager;
@@ -10,7 +11,7 @@ public class RemoteInfinispan implements InfinispanCollectionManagement, Infinis
 
    @Override
    public MapManager getMapManager() {
-      throw new UnsupportedOperationException("no remote implemented yet");
+      return new RemoteMapManager();
    }
 
    @Override

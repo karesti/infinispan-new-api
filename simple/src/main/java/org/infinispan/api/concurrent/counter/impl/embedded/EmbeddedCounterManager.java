@@ -12,7 +12,7 @@ import org.infinispan.api.concurrent.counter.StrongCounterAsync;
 
 public class EmbeddedCounterManager implements CounterManager {
 
-   private Map<String, EmbeddedStrongCounter> counters = new HashMap<>();
+   private Map<String, EmbeddedStrongCounterAsync> counters = new HashMap<>();
 
    @Override
    public boolean defineCounter(String name, CounterConfiguration configuration) {
@@ -21,12 +21,12 @@ public class EmbeddedCounterManager implements CounterManager {
 
    @Override
    public StrongCounter getStrongCounter(String name) {
-      return null;
+      return new EmbeddedStrongCounter();
    }
 
    @Override
    public StrongCounterAsync getStrongCounterAsync(String name) {
-      return null;
+      return new EmbeddedStrongCounterAsync();
    }
 
    @Override
