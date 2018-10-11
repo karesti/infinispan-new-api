@@ -1,9 +1,7 @@
-package org.infinispan.api.collection.map;
+package org.infinispan.api.collection.cache;
 
 import org.infinispan.api.collection.InfinispanCollectionManagement;
 import org.infinispan.api.collection.InfinispanCollectionsAccess;
-import org.infinispan.api.collection.cache.Cache;
-import org.infinispan.api.collection.cache.CacheManager;
 import org.junit.jupiter.api.Test;
 
 public class CacheTest {

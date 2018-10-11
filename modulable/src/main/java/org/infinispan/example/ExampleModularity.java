@@ -1,9 +1,11 @@
 package org.infinispan.example;
 
 import org.infinispan.api.Infinispan;
-import org.infinispan.api.map.v1.ApiCache;
+import org.infinispan.api.map.v1.CacheApi;
 import org.infinispan.api.map.v1.Cache;
 import org.infinispan.api.map.v1.CacheConfig;
+import org.infinispan.api.map.v1.RemoteCache;
+import org.infinispan.api.map.v1.RemoteCacheApi;
 
 /**
  * With this :
@@ -23,12 +25,29 @@ public class ExampleModularity {
 
    public static void main(String[] args){
 
-      Cache<String, String> foobarCache = Infinispan.get(ApiCache.instance(), new CacheConfig("foobar-cache"));
+      System.out.println("---------------------------");
+      System.out.println("     Embedded example      ");
+      System.out.println("---------------------------");
+      Cache<String, String> foobarCache = Infinispan.get(CacheApi.instance(), new CacheConfig("foobar-cache"));
 
-      foobarCache.put("foo", "bar");
+      foobarCache.put("foo", "bar").whenComplete((nil, ex) -> System.out.println("put foo"));
+      foobarCache.get("foo").whenComplete((val, ex) -> System.out.println("get foo -> " + val));
+
       System.out.println(foobarCache.getName());
-      System.out.println(foobarCache.get("foo"));
       System.out.println(foobarCache.getClass());
+
+      System.out.println("\n");
+
+      System.out.println("---------------------------");
+      System.out.println("      Remote example       ");
+      System.out.println("---------------------------");
+      RemoteCache<String, String> remoteCache = Infinispan.get(RemoteCacheApi.instance(), new CacheConfig("foobar-cache"));
+
+      remoteCache.put("foo", "bar").whenComplete((nil, ex) -> System.out.println("put foo"));
+      remoteCache.get("foo").whenComplete((val, ex) -> System.out.println("get foo -> " + val));
+
+      System.out.println(remoteCache.getName());
+      System.out.println(remoteCache.getClass());
 
    }
 

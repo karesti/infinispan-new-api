@@ -3,7 +3,7 @@ package org.infinispan.api.map.v1;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
 
-public interface Cache<K, V> {
+public interface RemoteCache<K, V> {
 
    CompletionStage<V> get(K key);
 
@@ -11,5 +11,5 @@ public interface Cache<K, V> {
 
    String getName();
 
-   interface Factory<K, V> extends Function<CacheConfig, Cache<K, V>> {}
+   interface Factory<K, V> extends Function<CacheConfig, RemoteCache<K, V>> {}
 }
