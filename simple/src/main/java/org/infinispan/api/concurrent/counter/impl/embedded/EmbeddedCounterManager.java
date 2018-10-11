@@ -7,7 +7,6 @@ import java.util.Map;
 import org.infinispan.api.concurrent.counter.CounterConfiguration;
 import org.infinispan.api.concurrent.counter.CounterManager;
 import org.infinispan.api.concurrent.counter.StrongCounter;
-import org.infinispan.api.concurrent.counter.StrongCounterAsync;
 
 
 public class EmbeddedCounterManager implements CounterManager {
@@ -21,11 +20,6 @@ public class EmbeddedCounterManager implements CounterManager {
 
    @Override
    public StrongCounter getStrongCounter(String name) {
-      return new EmbeddedStrongCounter();
-   }
-
-   @Override
-   public StrongCounterAsync getStrongCounterAsync(String name) {
       return new EmbeddedStrongCounterAsync();
    }
 

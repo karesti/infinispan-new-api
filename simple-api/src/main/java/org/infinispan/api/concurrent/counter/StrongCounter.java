@@ -1,6 +1,10 @@
 package org.infinispan.api.concurrent.counter;
 
+import java.util.concurrent.CompletionStage;
+
 public interface StrongCounter {
 
-   int addAndGet(int increment);
+   CompletionStage<Integer> addAndGet(int increment);
+
+   SyncStrongCounter getSync();
 }

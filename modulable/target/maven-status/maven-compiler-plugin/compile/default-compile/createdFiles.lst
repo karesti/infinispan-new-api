@@ -1,3 +1,13 @@
+META-INF/services/org.infinispan.api.map.v1.Cache$Factory
+org/infinispan/example/ExampleModularity.class
 org/infinispan/api/Api$Location.class
-org/infinispan/api/Api.class
+org/infinispan/api/map/v1/impl/EmbeddedCache$FactoryImpl.class
+org/infinispan/api/map/v1/Cache.class
 org/infinispan/api/Infinispan.class
+org/infinispan/api/map/v1/Cache$Factory.class
+org/infinispan/api/map/v1/Cache$RemoteFactory.class
+org/infinispan/api/map/v1/impl/EmbeddedCache.class
+org/infinispan/api/map/v1/ApiCache.class
+org/infinispan/api/Api.class
+org/infinispan/api/map/v1/impl/EmbeddedCache$1.class
+org/infinispan/api/map/v1/CacheConfig.class

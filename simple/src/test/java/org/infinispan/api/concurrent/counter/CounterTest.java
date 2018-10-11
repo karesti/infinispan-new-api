@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 public class CounterTest {
 
    @Test
-   public void testLocalSync() throws Exception {
+   public void testLocal() throws Exception {
       InfinispanConcurrencyManagement infinispan = InfinispanConcurrencyAccess.getLocalAccess();
 
       CounterManager counterManager = infinispan.getCounterManager();
       StrongCounter counter1 = counterManager.getStrongCounter("counter1");
 
-      int result = counter1.addAndGet(1);
+      int result = counter1.getSync().addAndGet(1);
       assertThat(result).isEqualTo(1);
    }
 
@@ -26,7 +26,7 @@ public class CounterTest {
       InfinispanConcurrencyManagement infinispan = InfinispanConcurrencyAccess.getLocalAccess();
 
       CounterManager counterManager = infinispan.getCounterManager();
-      StrongCounterAsync counter1 = counterManager.getStrongCounterAsync("counter1");
+      StrongCounter counter1 = counterManager.getStrongCounter("counter1");
 
       CompletionStage<Integer> value1 = counter1.addAndGet(3);
 

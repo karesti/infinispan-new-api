@@ -1,2 +1,7 @@
+/Users/katiaaresti/REDHAT/infinispan-new-api/modulable/src/main/java/org/infinispan/api/map/v1/Cache.java
+/Users/katiaaresti/REDHAT/infinispan-new-api/modulable/src/main/java/org/infinispan/api/map/v1/impl/EmbeddedCache.java
+/Users/katiaaresti/REDHAT/infinispan-new-api/modulable/src/main/java/org/infinispan/api/map/v1/CacheConfig.java
+/Users/katiaaresti/REDHAT/infinispan-new-api/modulable/src/main/java/org/infinispan/example/ExampleModularity.java
 /Users/katiaaresti/REDHAT/infinispan-new-api/modulable/src/main/java/org/infinispan/api/Api.java
 /Users/katiaaresti/REDHAT/infinispan-new-api/modulable/src/main/java/org/infinispan/api/Infinispan.java
+/Users/katiaaresti/REDHAT/infinispan-new-api/modulable/src/main/java/org/infinispan/api/map/v1/ApiCache.java

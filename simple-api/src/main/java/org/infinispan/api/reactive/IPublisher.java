@@ -8,20 +8,26 @@ import java.util.function.Predicate;
 
 import org.reactivestreams.Publisher;
 
-public interface InfinispanPublisher<T> {
+/**
+ * I -> Infinispan xD
+ *
+ * @param <T>
+ * @author wburns
+ */
+public interface IPublisher<T> {
 
    // Intermediate methods
-   <R> InfinispanPublisher<R> map(Function<? super T, ? extends R> function);
+   <R> IPublisher<R> map(Function<? super T, ? extends R> function);
 
-   <R> InfinispanPublisher<R> flatMap(Function<? super T, ? extends Publisher<? extends R>> function);
+   <R> IPublisher<R> flatMap(Function<? super T, ? extends Publisher<? extends R>> function);
 
-   InfinispanPublisher<T> filter(Predicate<? super T> predicate);
+   IPublisher<T> filter(Predicate<? super T> predicate);
 
-   InfinispanPublisher<T> distributedBatchSize(int batchSize);
+   IPublisher<T> distributedBatchSize(int batchSize);
 
-   InfinispanPublisher<T> parallel();
+   IPublisher<T> parallel();
 
-   InfinispanPublisher<T> sequential();
+   IPublisher<T> sequential();
 
    // Terminal Operations
 

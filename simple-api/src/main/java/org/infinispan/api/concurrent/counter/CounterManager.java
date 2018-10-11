@@ -8,8 +8,6 @@ public interface CounterManager {
 
     StrongCounter getStrongCounter(String name);
 
-    StrongCounterAsync getStrongCounterAsync(String name);
-
     boolean isDefined(String name);
 
     CounterConfiguration getConfiguration(String counterName);

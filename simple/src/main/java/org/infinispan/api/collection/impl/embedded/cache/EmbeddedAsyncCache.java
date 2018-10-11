@@ -1,13 +1,13 @@
-package org.infinispan.api.collection.impl.embedded.map.impl.embedded;
+package org.infinispan.api.collection.impl.embedded.cache;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import org.infinispan.api.collection.map.InfinispanAsyncMap;
-import org.infinispan.api.reactive.InfinispanPublisher;
+import org.infinispan.api.collection.cache.Cache;
+import org.infinispan.api.reactive.IPublisher;
 
-public class EmbeddedAsyncCache<K, V> implements InfinispanAsyncMap<K, V> {
+public class EmbeddedAsyncCache<K, V> implements Cache<K, V> {
 
    private Map<K, V> map = new HashMap();
 
@@ -21,7 +21,7 @@ public class EmbeddedAsyncCache<K, V> implements InfinispanAsyncMap<K, V> {
    }
 
    @Override
-   public InfinispanPublisher<Map.Entry<K, V>> publisher() {
+   public IPublisher<Map.Entry<K, V>> publisher() {
       return null;
    }
 }

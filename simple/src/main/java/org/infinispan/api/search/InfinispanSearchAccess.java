@@ -10,6 +10,7 @@ public final class InfinispanSearchAccess {
    }
 
    public static InfinispanSearch getRemoteSearch() {
+
       throw new UnsupportedOperationException("Remote search not implemented yet");
    }
 }
