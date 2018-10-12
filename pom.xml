@@ -15,6 +15,7 @@
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
         <version.infinispan>9.3.3.Final</version.infinispan>
         <junit.jupiter.version>5.3.1</junit.jupiter.version>
+        <version.reactivestreams>1.0.1</version.reactivestreams>
     </properties>
 
     <dependencyManagement>
@@ -67,6 +68,11 @@
             <artifactId>assertj-core</artifactId>
             <version>3.11.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reactivestreams</groupId>
+            <artifactId>reactive-streams</artifactId>
+            <version>${version.reactivestreams}</version>
         </dependency>
     </dependencies>
     <build>

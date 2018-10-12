@@ -1,12 +1,13 @@
 package org.infinispan.example;
 
 import java.util.Random;
-import java.util.concurrent.Flow;
 
 import org.infinispan.api.Infinispan;
 import org.infinispan.api.map.v1.CacheConfig;
 import org.infinispan.api.map.v1.RemoteCache;
 import org.infinispan.api.map.v1.RemoteCacheApi;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 /**
  * With this :
@@ -38,20 +39,16 @@ public class RemoteReactiveExample {
 
       remoteCache.size().whenComplete((size,ex) -> System.out.println(size));
 
-      class PrintSubscriber implements Flow.Subscriber<String> {
-
-         private Flow.Subscription subscription;
+      class PrintSubscriber<T> implements Subscriber<T> {
 
          @Override
-         public void onSubscribe(Flow.Subscription subscription) {
-            this.subscription = subscription;
-            this.subscription.request(1);
+         public void onSubscribe(Subscription subscription) {
+            System.out.println("On subscribe");
          }
 
          @Override
-         public void onNext(String key) {
-            System.out.println(key);
-            this.subscription.request(1);
+         public void onNext(T t) {
+            System.out.println("On next " + t);
          }
 
          @Override
@@ -65,7 +62,15 @@ public class RemoteReactiveExample {
          }
       }
 
-      remoteCache.getValues().subscribe(new PrintSubscriber());
+      System.out.println("---------------------------");
+      System.out.println("          getKeys          ");
+      System.out.println("---------------------------");
+      remoteCache.getKeys().subscribe(new PrintSubscriber<>());
+
+      System.out.println("---------------------------");
+      System.out.println("         getValues         ");
+      System.out.println("---------------------------");
+      remoteCache.getValues().subscribe(new PrintSubscriber<>());
 
    }
 

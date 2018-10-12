@@ -6,10 +6,9 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.Flow;
-import java.util.concurrent.SubmissionPublisher;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.infinispan.api.map.v1.CacheConfig;
 import org.infinispan.api.map.v1.RemoteCache;
@@ -18,7 +17,7 @@ import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 
 
-public class RemoteCacheImpl<K,V> implements RemoteCache<K, V> {
+public class RemoteCacheImpl<K, V> implements RemoteCache<K, V> {
 
    private final Queue<String> queue = new LinkedList<>();
    private final Map<K, V> data = new HashMap<>();
@@ -50,19 +49,43 @@ public class RemoteCacheImpl<K,V> implements RemoteCache<K, V> {
    }
 
    @Override
-   public Flow.Publisher<K> getKeys() {
-      SubmissionPublisher publisher = new SubmissionPublisher<K>();
-      data.keySet().stream().forEach(i -> publisher.submit(i));
-      publisher.close();
-      return publisher;
+   public CompletionStage<V> getAndPut(K key, V value) {
+      return CompletableFuture.completedFuture(data.put(key, value));
+   }
+
+   private static final class PublisherFromStream<T> implements Publisher<T> {
+      private final Stream<T> stream;
+
+      private PublisherFromStream(Stream<T> stream) {
+         this.stream = stream;
+      }
+
+      @Override
+      public void subscribe(Subscriber<? super T> s) {
+         stream.forEach(val -> s.onNext(val));
+         s.onComplete();
+      }
    }
 
    @Override
-   public Flow.Publisher<V> getValues() {
-      SubmissionPublisher publisher = new SubmissionPublisher<V>();
-      data.values().stream().forEach(i -> publisher.submit(i));
-      publisher.close();
-      return publisher;
+   public Publisher<K> getKeys() {
+      return new PublisherFromStream<>(this.data.keySet().stream());
+   }
+
+   @Override
+   public Publisher<V> getValues() {
+      return new PublisherFromStream<>(this.data.values().stream());
+   }
+
+   @Override
+   public CompletionStage<Void> putMany(Map<K, V> map) {
+      data.putAll(map);
+      return CompletableFuture.completedFuture(null);
+   }
+
+   @Override
+   public CompletionStage<Void> putMany(Publisher<Map.Entry<K, V>> pairs) {
+      return null;
    }
 
    @Override
