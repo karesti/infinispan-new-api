@@ -1,8 +1,5 @@
 package org.infinispan.api;
 
-import javax.transaction.TransactionManager;
-
-import org.infinispan.Cache;
 import org.infinispan.api.admistration.InfinispanAdmin;
 import org.infinispan.api.collection.InfinispanCollectionManagement;
 import org.infinispan.api.search.InfinispanSearch;
@@ -12,8 +9,6 @@ import org.infinispan.api.search.InfinispanSearch;
 public interface Infinispan {
 
    InfinispanCollectionManagement getCollectionsManagement();
-
-   TransactionManager getTransactionManagement();
 
    InfinispanSearch getSearch();
 

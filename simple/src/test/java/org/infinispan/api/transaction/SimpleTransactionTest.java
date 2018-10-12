@@ -1,6 +1,5 @@
 package org.infinispan.api.transaction;
 
-import javax.transaction.TransactionManager;
 
 import org.infinispan.api.transactions.InfinispanTransactionAccess;
 import org.infinispan.api.transactions.InfinispanTransactionManager;
@@ -27,7 +26,7 @@ public class SimpleTransactionTest {
          }
 
          // Obtains underlying javax transaction manager
-         TransactionManager manager = transactionManager.unwrapTransactionManager();
+//         TransactionManager manager = transactionManager.unwrapTransactionManager();
       } catch (Exception ex) {
          System.out.println("this is just api test");
       }
