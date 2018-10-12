@@ -18,21 +18,9 @@
         <version.reactivestreams>1.0.1</version.reactivestreams>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.infinispan</groupId>
-                <artifactId>infinispan-bom</artifactId>
-                <version>${version.infinispan}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <modules>
         <module>simple-api</module>
-        <module>simple</module>
+        <module>simple-impl</module>
         <module>modulable</module>
     </modules>
 
