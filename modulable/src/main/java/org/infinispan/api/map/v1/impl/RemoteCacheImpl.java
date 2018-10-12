@@ -6,11 +6,16 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.Flow;
+import java.util.concurrent.SubmissionPublisher;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.infinispan.api.map.v1.CacheConfig;
 import org.infinispan.api.map.v1.RemoteCache;
 import org.kohsuke.MetaInfServices;
+import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
 
 
 public class RemoteCacheImpl<K,V> implements RemoteCache<K, V> {
@@ -35,8 +40,39 @@ public class RemoteCacheImpl<K,V> implements RemoteCache<K, V> {
    }
 
    @Override
+   public CompletionStage<Void> put(K key, V value, long lifespan, TimeUnit unit) {
+      return put(key, value);
+   }
+
+   @Override
+   public CompletionStage<Void> put(K key, V value, long lifespan, TimeUnit lifepanUnit, long maxidle, TimeUnit maxidleUnit) {
+      return put(key, value);
+   }
+
+   @Override
+   public Flow.Publisher<K> getKeys() {
+      SubmissionPublisher publisher = new SubmissionPublisher<K>();
+      data.keySet().stream().forEach(i -> publisher.submit(i));
+      publisher.close();
+      return publisher;
+   }
+
+   @Override
+   public Flow.Publisher<V> getValues() {
+      SubmissionPublisher publisher = new SubmissionPublisher<V>();
+      data.values().stream().forEach(i -> publisher.submit(i));
+      publisher.close();
+      return publisher;
+   }
+
+   @Override
    public String getName() {
       return config.getName();
+   }
+
+   @Override
+   public CompletionStage<Long> size() {
+      return CompletableFuture.completedFuture(Long.valueOf(data.size()));
    }
 
    @Override
