@@ -1,4 +1,4 @@
 package org.infinispan.api.search;
 
-public class Query {
+public interface Query {
 }

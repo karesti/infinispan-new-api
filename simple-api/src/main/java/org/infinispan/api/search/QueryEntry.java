@@ -1,23 +1,23 @@
 package org.infinispan.api.search;
 
-public class QueryEntry<K,V> {
-   public boolean joining() {
+public interface QueryEntry<K, V> {
+   default boolean joining() {
       return false;
    }
 
-   public boolean updated() {
+   default boolean updated() {
       return false;
    }
 
-   public boolean leaving() {
+   default boolean leaving() {
       return false;
    }
 
-   public V value() {
+   default V value() {
       return null;
    }
 
-   public K key() {
+   default K key() {
       return null;
    }
 }
