@@ -1,11 +1,11 @@
 package org.infinispan.example;
 
 import org.infinispan.api.Infinispan;
-import org.infinispan.api.map.v1.CacheApi;
-import org.infinispan.api.map.v1.Cache;
-import org.infinispan.api.map.v1.CacheConfig;
-import org.infinispan.api.map.v1.RemoteCache;
-import org.infinispan.api.map.v1.RemoteCacheApi;
+import org.infinispan.api.cache.v1.CacheApi;
+import org.infinispan.api.cache.v1.Cache;
+import org.infinispan.api.cache.v1.CacheConfig;
+import org.infinispan.api.cache.v1.RemoteCache;
+import org.infinispan.api.cache.v1.RemoteCacheApi;
 
 /**
  * With this :

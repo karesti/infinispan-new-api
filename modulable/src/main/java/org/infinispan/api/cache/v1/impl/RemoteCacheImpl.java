@@ -1,4 +1,4 @@
-package org.infinispan.api.map.v1.impl;
+package org.infinispan.api.cache.v1.impl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -10,8 +10,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.infinispan.api.map.v1.CacheConfig;
-import org.infinispan.api.map.v1.RemoteCache;
+import org.infinispan.api.cache.v1.CacheConfig;
+import org.infinispan.api.cache.v1.RemoteCache;
 import org.kohsuke.MetaInfServices;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
@@ -53,7 +53,7 @@ public class RemoteCacheImpl<K, V> implements RemoteCache<K, V> {
       return CompletableFuture.completedFuture(data.put(key, value));
    }
 
-   private static final class PublisherFromStream<T> implements Publisher<T> {
+   private static final class PublisherFromStream<T> implements Publisher {
       private final Stream<T> stream;
 
       private PublisherFromStream(Stream<T> stream) {
@@ -61,7 +61,7 @@ public class RemoteCacheImpl<K, V> implements RemoteCache<K, V> {
       }
 
       @Override
-      public void subscribe(Subscriber<? super T> s) {
+      public void subscribe(Subscriber s) {
          stream.forEach(val -> s.onNext(val));
          s.onComplete();
       }

@@ -1,4 +1,4 @@
-package org.infinispan.api.map.v1.impl;
+package org.infinispan.api.cache.v1.impl;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,8 +8,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
-import org.infinispan.api.map.v1.Cache;
-import org.infinispan.api.map.v1.CacheConfig;
+import org.infinispan.api.cache.v1.Cache;
+import org.infinispan.api.cache.v1.CacheConfig;
 import org.kohsuke.MetaInfServices;
 
 

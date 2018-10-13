@@ -1,4 +1,4 @@
-package org.infinispan.api.map.v1;
+package org.infinispan.api.cache.v1;
 
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
