@@ -1,5 +1,7 @@
 package org.infinispan.api.transactions;
 
+import java.util.concurrent.CompletionStage;
+
 public interface TransactionalMap<K, V> {
-   void put(K key, V value);
+   CompletionStage<Void> put(K key, V value);
 }

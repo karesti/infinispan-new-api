@@ -1,7 +1,7 @@
 package org.infinispan.api.search;
 
-public interface QueryFactory {
+public class QueryFactory {
    static Query build() {
-      return new Query();
+      return null;
    }
 }
