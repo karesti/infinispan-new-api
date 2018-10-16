@@ -52,8 +52,12 @@ public class SimpleSearchTest {
       people.put(2, new Person("Ainhoa", "Junkera"));
 
       Flowable.fromPublisher(people.addContinuousQuery(QueryFactory.build()))
-            .map(entry -> entry.value().surname)
+            .map(entry -> transform(entry.value()))
             .count()
             .subscribe();
+   }
+
+   private <R> R transform(Person value) {
+      return null;
    }
 }

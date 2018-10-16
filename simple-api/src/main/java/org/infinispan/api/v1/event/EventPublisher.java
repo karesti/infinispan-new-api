@@ -14,8 +14,6 @@ public interface EventPublisher<K> {
 
    EventPublisher<K> filter(Predicate<ClientEvent> predicate);
 
-//   <R> Publisher<ClientCacheEntryCustomEvent<R>> filterAndMap(Query query);
-
    EventPublisher<K> filter(Set<ClientEvent.Type> types);
 
    Publisher<ClientEvent> asPublisher();
