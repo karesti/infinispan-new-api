@@ -14,4 +14,11 @@
     <groupId>org.infinispan</groupId>
     <artifactId>api-simple</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>api-modulable</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -1,10 +1,16 @@
 package org.infinispan.api.search;
 
+import org.infinispan.api.v1.InfinispanAccess;
+import org.infinispan.api.v1.search.ContinuousQueryPublisher;
+import org.infinispan.api.v1.search.ContinuousQuerySubscriber;
+import org.infinispan.api.v1.search.QueryFactory;
+import org.infinispan.api.v1.search.SearchApi;
+import org.infinispan.api.v1.search.SearchableMap;
 import org.junit.jupiter.api.Test;
 
 public class SimpleSearchTest {
 
-   class MyCQSubscriber implements ContinuousQuerySubscriber<Integer, Person> {
+   class MySubscriber implements ContinuousQuerySubscriber<Integer, Person> {
 
       @Override
       public void joining(Integer key, Person value) {
@@ -24,18 +30,16 @@ public class SimpleSearchTest {
 
    @Test
    public void testEmbeddedSearchWithIckle() {
-
       try {
-         InfinispanSearch infinispanSearch = InfinispanSearchAccess.getLocalSearch();
 
-         SearchableMap<Integer, Person> people = infinispanSearch.getOrCreateMap("people");
+         SearchableMap<Integer, Person> people = InfinispanAccess.remote().get(SearchApi.instance(), "people");
          people.put(1, new Person("Mikel", "Laboa"));
          people.put(2, new Person("Kepa", "Junkera"));
 
          people.list("from Person p where p.name = 'Mikel'");
 
          ContinuousQueryPublisher<Integer, Person> continuousQueryPublisher = people.addContinuousQuery(QueryFactory.build());
-         continuousQueryPublisher.subscribe(new MyCQSubscriber());
+         continuousQueryPublisher.subscribe(new MySubscriber());
 
       } catch (Exception ex) {
          System.out.println("this is just api test");
