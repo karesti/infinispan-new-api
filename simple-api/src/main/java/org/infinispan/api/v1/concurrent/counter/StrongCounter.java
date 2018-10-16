@@ -10,6 +10,4 @@ public interface StrongCounter {
    SyncStrongCounter getSync();
 
    interface Factory extends Function<CounterConfiguration, StrongCounter> {}
-   interface ClientFactory extends Function<CounterConfiguration, StrongCounter> {}
-
 }

@@ -2,8 +2,12 @@ package org.infinispan.api.v1.admistration;
 
 import java.util.Collection;
 import java.util.concurrent.CompletionStage;
+import java.util.function.Function;
 
-public interface Administration {
+import org.infinispan.api.v1.collection.map.MapConfig;
+import org.infinispan.api.v1.collection.map.ReactiveMap;
+
+public interface Administration<T> {
 
    CompletionStage<Void> defineConfiguration(Configuration config);
 
@@ -16,4 +20,7 @@ public interface Administration {
    Collection<String> getNames();
 
    //T getOrCreate(String name, String configTemplate);
+
+   interface Factory extends Function<Administration, Configuration> {}
+
 }

@@ -2,6 +2,7 @@ package org.infinispan.api.v1.impl.event;
 
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import org.infinispan.api.v1.event.ClientCacheEntryCreatedEvent;
 import org.infinispan.api.v1.event.ClientCacheEntryModifiedEvent;
@@ -13,17 +14,22 @@ import org.reactivestreams.Publisher;
 public class EmbeddedEventPublisher<K> implements EventPublisher<K> {
    @Override
    public EventPublisher<K> includeCurrentState() {
-      return null;
+      return this;
    }
 
    @Override
    public EventPublisher<K> filter(String ickleQuery) {
+      return this;
+   }
+
+   @Override
+   public EventPublisher<K> filter(Predicate<ClientEvent> predicate) {
       return null;
    }
 
    @Override
-   public EventPublisher<K> filterByEventType(Set<ClientEvent.Type> types) {
-      return null;
+   public EventPublisher<K> filter(Set<ClientEvent.Type> types) {
+      return this;
    }
 
    @Override

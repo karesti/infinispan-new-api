@@ -9,6 +9,9 @@ import org.infinispan.api.v1.search.SearchApi;
 import org.infinispan.api.v1.search.SearchableMap;
 import org.junit.jupiter.api.Test;
 
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+
 public class SimpleSearchTest {
 
    class MySubscriber implements ContinuousQuerySubscriber<Integer, Person> {
@@ -30,17 +33,27 @@ public class SimpleSearchTest {
    }
 
    @Test
-   public void testEmbeddedSearchWithIckle() {
+   public void continuous_query() {
       SearchableMap<Integer, Person> people = Infinispan.get(SearchApi.instance(), "people");
 
       people.put(1, new Person("Mikel", "Laboa"));
       people.put(2, new Person("Kepa", "Junkera"));
+      people.put(2, new Person("Ainhoa", "Junkera"));
 
-      Query query = QueryFactory.build();
-      people.list("from Person p where p.name = 'Mikel'");
-      people.list(query);
+      people.addContinuousQuery("from Person p where p.name = 'Mikel'").subscribe(new MySubscriber());
+   }
 
-      ContinuousQueryPublisher<Integer, Person> continuousQueryPublisher = people.addContinuousQuery(query);
-      continuousQueryPublisher.subscribe(new MySubscriber());
+   @Test
+   public void continuous_query_rxjava2() {
+      SearchableMap<Integer, Person> people = Infinispan.get(SearchApi.instance(), "people");
+
+      people.put(1, new Person("Mikel", "Laboa"));
+      people.put(2, new Person("Kepa", "Junkera"));
+      people.put(2, new Person("Ainhoa", "Junkera"));
+
+      Flowable.fromPublisher(people.addContinuousQuery(QueryFactory.build()))
+            .map(entry -> entry.value().surname)
+            .count()
+            .subscribe();
    }
 }

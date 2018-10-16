@@ -1,6 +1,8 @@
 package org.infinispan.api.v1.collection.map;
 
-public class MapConfig {
+import org.infinispan.api.v1.admistration.Configuration;
+
+public class MapConfig implements Configuration {
    private final String name;
 
    public MapConfig(String name) {

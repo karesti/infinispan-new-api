@@ -29,21 +29,21 @@ public class ListenerTest {
 
       // by event
       SafeClosable eventSusbcription = remoteCache.getEventPublisher()
-            .filterByEventType(Set.of(ClientEvent.Type.CREATED))
+            .filter(Set.of(ClientEvent.Type.CREATED))
             .subscribe(e -> System.out.println("toto"));
       eventSusbcription.close();
 
       List<Integer> nearCache = new ArrayList<>();
 
       remoteCache.getEventPublisher().onFailover(() -> nearCache.clear())
-            .filterByEventType(Set.of(ClientEvent.Type.CREATED))
+            .filter(Set.of(ClientEvent.Type.CREATED))
             .includeCurrentState()
             .subscribe(e -> {
                nearCache.add(e.getKey());
             });
 
       remoteCache.getEventPublisher().onFailover(() -> nearCache.clear())
-            .filterByEventType(Set.of(ClientEvent.Type.MODIFIED, ClientEvent.Type.REMOVED))
+            .filter(Set.of(ClientEvent.Type.MODIFIED, ClientEvent.Type.REMOVED))
             .subscribe(e -> {
          nearCache.remove(e.getKey());
       });
