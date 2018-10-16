@@ -19,9 +19,10 @@
     </properties>
 
     <modules>
-        <module>simple-api</module>
-        <module>simple-impl</module>
         <module>modulable</module>
+        <module>simple-api</module>
+        <module>simple-embedded</module>
+        <module>simple-client</module>
     </modules>
 
     <dependencies>

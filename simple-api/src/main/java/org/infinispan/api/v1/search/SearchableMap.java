@@ -3,8 +3,6 @@ package org.infinispan.api.v1.search;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
 
-import org.infinispan.api.v1.collection.map.MapConfig;
-import org.infinispan.api.v1.collection.map.RemoteMap;
 import org.reactivestreams.Publisher;
 
 public interface SearchableMap<K, V> {

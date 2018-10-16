@@ -4,7 +4,6 @@ import java.util.function.Function;
 
 import org.infinispan.api.Api;
 import org.infinispan.api.v1.collection.map.MapConfig;
-import org.infinispan.api.v1.collection.map.RemoteMap;
 
 public class SearchApi<K,V> implements Api<SearchableMap<K, V>, MapConfig> {
    private static final SearchApi INSTANCE = new SearchApi();
