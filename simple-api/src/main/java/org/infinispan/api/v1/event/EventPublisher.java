@@ -2,6 +2,7 @@ package org.infinispan.api.v1.event;
 
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import org.reactivestreams.Publisher;
 
@@ -11,17 +12,11 @@ public interface EventPublisher<K> {
 
    EventPublisher<K> filter(String ickleQuery);
 
+   EventPublisher<K> filter(Predicate<ClientEvent> predicate);
+
 //   <R> Publisher<ClientCacheEntryCustomEvent<R>> filterAndMap(Query query);
 
-   EventPublisher<K> filterByEventType(Set<ClientEvent.Type> types);
-
-//   Publisher<ClientCacheEntryCreatedEvent<K>> onlyCreatedEvents();
-
-//   Publisher<ClientCacheEntryModifiedEvent<K>> onlyModifiedEvents();
-
-//   Publisher<ClientCacheEntryRemovedEvent<K>> onlyRemovedEvents();
-//
-//   Publisher<ClientCacheEntryExpiredEvent<K>> onlyExpiredEvents();
+   EventPublisher<K> filter(Set<ClientEvent.Type> types);
 
    Publisher<ClientEvent> asPublisher();
 

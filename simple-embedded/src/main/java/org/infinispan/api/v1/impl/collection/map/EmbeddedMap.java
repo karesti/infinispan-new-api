@@ -105,6 +105,11 @@ public class EmbeddedMap<K, V> implements ReactiveMap<K, V>{
    }
 
    @Override
+   public IPublisher<Map.Entry<K, V>> publisher() {
+      return null;
+   }
+
+   @Override
    public String toString() {
       return queue.stream().collect(Collectors.joining("\n"));
    }

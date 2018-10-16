@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import org.infinispan.api.v1.event.EventPublisher;
+import org.infinispan.api.v1.reactive.IPublisher;
 import org.reactivestreams.Publisher;
 
 public interface ReactiveMap<K, V> {
@@ -33,6 +34,8 @@ public interface ReactiveMap<K, V> {
    CompletionStage<Long> size();
 
    EventPublisher<K> getEventPublisher();
+
+   IPublisher<Map.Entry<K, V>> publisher();
 
    interface Factory<K, V> extends Function<MapConfig, ReactiveMap<K, V>> {}
 }

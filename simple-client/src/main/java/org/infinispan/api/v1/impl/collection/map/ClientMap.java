@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 import org.infinispan.api.v1.collection.map.MapConfig;
 import org.infinispan.api.v1.collection.map.ReactiveMap;
 import org.infinispan.api.v1.event.EventPublisher;
+import org.infinispan.api.v1.reactive.IPublisher;
 import org.kohsuke.MetaInfServices;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
@@ -101,6 +102,11 @@ public class ClientMap<K, V> implements ReactiveMap<K, V> {
    @Override
    public EventPublisher<K> getEventPublisher() {
       return null;
+   }
+
+   @Override
+   public IPublisher<Map.Entry<K, V>> publisher() {
+      throw new UnsupportedOperationException("Publisher API is not supported in clients");
    }
 
    @Override
